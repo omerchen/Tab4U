@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "Tab4U",
     "slug": "Tab4U",
     "platforms": [
       "ios",
@@ -8,7 +8,7 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,13 +16,19 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 10000
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.omerchen.tab4u",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.omerchen.tab4u",
+      "versionCode": 1
     }
   }
 }
