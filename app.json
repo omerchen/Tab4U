@@ -1,12 +1,8 @@
 {
   "expo": {
-    "name": "Tab4U",
+    "name": "Tab4U.com",
     "slug": "Tab4U",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -18,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 10000
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.omerchen.tab4u",

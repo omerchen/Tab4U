@@ -1,18 +1,27 @@
-import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, View, SafeAreaView, Con } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, TouchableOpacity, View, SafeAreaView, Alert } from "react-native";
 import { WebView } from "react-native-webview";
 import { Ionicons } from "@expo/vector-icons";
 import Spinner from "./Spinner";
 import {hitScreen, addEventAnalytcis} from "./analytics"
 import Constants from "expo-constants"
+import NetInfo from '@react-native-community/netinfo';
 
 export default function App() {
   const [isOut, setIsOut] = useState(false);
   const [wvRef, setWVRef] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const initialUrl = "https://www.tab4u.com/indexForMobile.php";
   const whitelist = ["tab4u.com", "tab4u.co.il"];
   const [url, setUrl] = useState(initialUrl);
+
+  useEffect(()=>{
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) {
+        Alert.alert("בעית תקשורת! בדוק את החיבור לרשת")
+      }
+    });
+  },[])
 
   let isExternalUrl = (url) => {
     return (
@@ -26,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, width: "100%" }}>
+    <SafeAreaView style={{ flex: 1, width: "100%", backgroundColor:"#fbfbfb" }}>
       <Spinner visible={loading} />
       {isOut && (
         <View
@@ -60,6 +69,8 @@ export default function App() {
         </View>
       )}
       <WebView
+        mediaPlaybackRequiresUserAction={true}
+        cacheEnabled={true}
         originWhitelist={["*"]}
         ref={(ref) => setWVRef(ref)}
         source={{ uri: url }}
@@ -74,7 +85,7 @@ export default function App() {
             addEventAnalytcis("internalUserEvent", Constants.deviceId, data.nativeEvent.url)
             addEventAnalytcis("internalPageEvent", data.nativeEvent.url, Constants.deviceId)
           }
-          setLoading(true);
+          // setLoading(true);
         }}
         onLoadEnd={(data) => {
           setLoading(false);

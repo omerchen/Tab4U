@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
+    "@react-native-community/netinfo": "5.5.1",
     "expo": "~37.0.3",
     "expo-analytics": "^1.0.15",
     "expo-constants": "~9.0.0",
